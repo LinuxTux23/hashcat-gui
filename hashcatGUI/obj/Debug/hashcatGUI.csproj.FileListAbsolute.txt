@@ -1,0 +1,11 @@
+C:\Users\lohseben\source\repos\hashcatGUI\hashcatGUI\bin\Debug\hashcatGUI.exe.config
+C:\Users\lohseben\source\repos\hashcatGUI\hashcatGUI\bin\Debug\hashcatGUI.exe
+C:\Users\lohseben\source\repos\hashcatGUI\hashcatGUI\bin\Debug\hashcatGUI.pdb
+C:\Users\lohseben\source\repos\hashcatGUI\hashcatGUI\obj\Debug\hashcatGUI.csproj.AssemblyReference.cache
+C:\Users\lohseben\source\repos\hashcatGUI\hashcatGUI\obj\Debug\hashcatGUI.Properties.Resources.resources
+C:\Users\lohseben\source\repos\hashcatGUI\hashcatGUI\obj\Debug\hashcatGUI.csproj.GenerateResource.cache
+C:\Users\lohseben\source\repos\hashcatGUI\hashcatGUI\obj\Debug\hashcatGUI.csproj.CoreCompileInputs.cache
+C:\Users\lohseben\source\repos\hashcatGUI\hashcatGUI\obj\Debug\hashcatGUI.exe
+C:\Users\lohseben\source\repos\hashcatGUI\hashcatGUI\obj\Debug\hashcatGUI.pdb
+C:\Users\lohseben\source\repos\hashcatGUI\hashcatGUI\obj\Debug\hashcatGUI.frm_main.resources
+C:\Users\lohseben\source\repos\hashcatGUI\hashcatGUI\obj\Debug\hashcatGUI.frm_result.resources
