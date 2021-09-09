@@ -9,3 +9,5 @@ C:\Users\lohseben\source\repos\hashcatGUI\hashcatGUI\obj\Debug\hashcatGUI.exe
 C:\Users\lohseben\source\repos\hashcatGUI\hashcatGUI\obj\Debug\hashcatGUI.pdb
 C:\Users\lohseben\source\repos\hashcatGUI\hashcatGUI\obj\Debug\hashcatGUI.frm_main.resources
 C:\Users\lohseben\source\repos\hashcatGUI\hashcatGUI\obj\Debug\hashcatGUI.frm_result.resources
+C:\Users\lohseben\source\repos\hashcatGUI\hashcatGUI\obj\Debug\hashcatGUI.frm_error.resources
+C:\Users\lohseben\source\repos\hashcatGUI\hashcatGUI\obj\Debug\hashcatGUI.frm_settings.resources
