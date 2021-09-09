@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace hashcatGUI
 {
-    public partial class frm_result : Form
+    public partial class frm_settings : Form
     {
-        public frm_result(string result)
+        public frm_settings()
         {
             InitializeComponent();
             this.CenterToScreen();
@@ -34,16 +34,37 @@ namespace hashcatGUI
             btn_minimize.BackColor = Color.FromArgb(72, 127, 72);
             btn_minimize.FlatStyle = FlatStyle.Flat;
             btn_minimize.FlatAppearance.BorderSize = 1;
-            label1.Text = result;
 
-            // pn_output Style
-            panel1.ForeColor = Color.FromArgb(72, 127, 72);
-            panel1.BackColor = Color.FromArgb(0, 0, 0);
+            // rb_bruteforce Style
+            rb_bruteforce.ForeColor = Color.FromArgb(72, 127, 72);
+
+            // rb_gpu Style
+            rb_gpu.ForeColor = Color.FromArgb(72, 127, 72);
+
+            // rb_apu Style
+            rb_apu.ForeColor = Color.FromArgb(72, 127, 72);
+
+            // rb_cpu Style
+            rb_cpu.ForeColor = Color.FromArgb(72, 127, 72);
+
+            // rb_straight Style
+            rb_straight.ForeColor = Color.FromArgb(72, 127, 72);
+
+            // rb_wordlist Style
+            rb_wordlist.ForeColor = Color.FromArgb(72, 127, 72);
+
+            // gb_attackmode Style
+            gb_attackmode.ForeColor = Color.FromArgb(72, 127, 72);
+
+            // gb_useddevice Style
+            gb_useddevice.ForeColor = Color.FromArgb(72, 127, 72);
+
+
         }
 
         private void btn_close_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
 
         private void btn_minimize_Click(object sender, EventArgs e)

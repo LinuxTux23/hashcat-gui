@@ -29,6 +29,7 @@ namespace hashcatGUI
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_result));
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_minimize = new System.Windows.Forms.Button();
@@ -97,6 +98,7 @@ namespace hashcatGUI
             this.ClientSize = new System.Drawing.Size(763, 723);
             this.Controls.Add(this.pn_top);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_result";
             this.Text = "Output";
             this.panel1.ResumeLayout(false);

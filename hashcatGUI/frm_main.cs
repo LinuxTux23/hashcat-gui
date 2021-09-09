@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.IO;
+using MiscUtil.IO;
 
 
 namespace hashcatGUI
@@ -16,6 +18,8 @@ namespace hashcatGUI
     {
 
         public string output;
+        private string hash;
+        private string crackedHash;
 
         public string CreateMD5(string input)
         {
@@ -30,12 +34,14 @@ namespace hashcatGUI
                 {
                     sb.Append(hashBytes[i].ToString("X2"));
                 }
+                this.hash = sb.ToString();
                 return sb.ToString();
         }
 
         public frm_main()
         {
             InitializeComponent();
+            this.CenterToScreen();
             this.BackColor = Color.FromArgb(51, 51, 51);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 
@@ -92,31 +98,62 @@ namespace hashcatGUI
             pn_output.ForeColor = Color.FromArgb(72, 127, 72);
             pn_output.BackColor = Color.FromArgb(0, 0, 0);
 
+            // lbl_msg Style
+            lbl_msg.ForeColor = Color.FromArgb(72, 127, 72);
+
+            // pic_github Style
+            pic_github.BackColor = Color.FromArgb(72, 127, 72);
+
+            // lbl_github Style
+            lbl_github.ForeColor = Color.FromArgb(72, 127, 72);
+
+            // btn_settings Style
+            btn_settings.ForeColor = Color.FromArgb(0, 0, 0);
+            btn_settings.BackColor = Color.FromArgb(72, 127, 72);
+            btn_settings.FlatStyle = FlatStyle.Flat;
+            btn_settings.FlatAppearance.BorderSize = 1;
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            tb_hash.Text = this.CreateMD5(tb_password.Text).ToLower();
+            if (tb_password.Text == string.Empty)
+            {
+                var errorForm = new frm_error("Please insert a Password!");
+                errorForm.Show();
+            }
+            else
+            {
+                Process p = new Process();
+                ProcessStartInfo psi = new ProcessStartInfo();
+                psi.FileName = "cmd.exe";
+                psi.WorkingDirectory = tb_exe.Text;
+                //MessageBox.Show(psi.FileName);
+                psi.Arguments = "/c hashcat.exe " + tb_hash.Text + " example.dict -m 0 --attack-mode 0 --potfile-disable -d 1 example.dict";
+                psi.RedirectStandardError = true;
+                psi.RedirectStandardOutput = true;
+                psi.UseShellExecute = false;
+                p.StartInfo = psi;
 
-            Process p = new Process();
-            ProcessStartInfo psi = new ProcessStartInfo();
-            psi.FileName = "cmd.exe";
-            psi.WorkingDirectory = tb_exe.Text;
-            //MessageBox.Show(psi.FileName);
-            psi.Arguments = "/c hashcat.exe -m 0 --attack-mode 3 --potfile-disable " + tb_hash.Text;
-            psi.RedirectStandardError = true;
-            psi.RedirectStandardOutput = true;
-            psi.UseShellExecute = false;
-            p.StartInfo = psi;
+                p.Start();
+                string error = p.StandardError.ReadToEnd();
+                string output = p.StandardOutput.ReadToEnd();
+                this.output = output;
+                lbl_output.Text = output;
 
-            p.Start();
-            string error = p.StandardError.ReadToEnd();
-            string output = p.StandardOutput.ReadToEnd();
-            // MessageBox.Show(error + " " + output);
-            this.output = output;
-            lbl_output.Text = output;
-            p.WaitForExit();
+
+                p.WaitForExit();
+
+                foreach (string line in new LineReader(() => new StringReader(this.output)))
+                {
+                    if (line.StartsWith(tb_hash.Text))
+                    {
+                        this.crackedHash = line;
+                    }
+                }
+
+                lbl_msg.Text = this.crackedHash;
+            }
         }
 
         private void btn_close_Click(object sender, EventArgs e)
@@ -133,6 +170,33 @@ namespace hashcatGUI
         {
             var outputWindow = new frm_result(this.output);
             outputWindow.Show();
+        }
+
+        private void tb_password_TextChanged(object sender, EventArgs e)
+        {
+            tb_hash.Text = this.CreateMD5(tb_password.Text).ToLower();
+        }
+
+        private void lbl_github_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string githubLink = "https://github.com/LinuxTux23";
+
+            try
+            {
+                System.Diagnostics.Process.Start("Msedge", githubLink);
+            }
+            catch
+            {
+                var errorForm = new frm_error("Legacy Mode");
+                errorForm.Show();
+                System.Diagnostics.Process.Start("IExplore", githubLink);
+            }
+        }
+
+        private void btn_settings_Click(object sender, EventArgs e)
+        {
+            var settingsForm = new frm_settings();
+            settingsForm.Show();
         }
     }
 }
