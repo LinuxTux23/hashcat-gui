@@ -20,6 +20,10 @@ namespace hashcatGUI
         public string output;
         private string hash;
         private string crackedHash;
+        private string test;
+        private HashCatRunner runner;
+        private frm_settings settingsForm;
+        private System.Windows.Forms.DialogResult settingsFormResult;
 
         public string CreateMD5(string input)
         {
@@ -41,6 +45,7 @@ namespace hashcatGUI
         public frm_main()
         {
             InitializeComponent();
+            runner = new HashCatRunner();
             this.CenterToScreen();
             this.BackColor = Color.FromArgb(51, 51, 51);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -112,7 +117,6 @@ namespace hashcatGUI
             btn_settings.BackColor = Color.FromArgb(72, 127, 72);
             btn_settings.FlatStyle = FlatStyle.Flat;
             btn_settings.FlatAppearance.BorderSize = 1;
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -175,6 +179,27 @@ namespace hashcatGUI
         private void tb_password_TextChanged(object sender, EventArgs e)
         {
             tb_hash.Text = this.CreateMD5(tb_password.Text).ToLower();
+            var password = tb_password.Text;
+            if(password.Length <= 0)
+            {
+                pr_pw_lenght.Value = 0;
+            }
+            else if (password.Length < 2)
+            {
+                pr_pw_lenght.Value = 10;
+            }
+            else if (password.Length < 4)
+            {
+                pr_pw_lenght.Value = 50;
+            }
+            else if (password.Length < 8)
+            {
+                pr_pw_lenght.Value = 80;
+            }
+            else if (password.Length < 10)
+            {
+                pr_pw_lenght.Value = 100;
+            }
         }
 
         private void lbl_github_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -195,8 +220,18 @@ namespace hashcatGUI
 
         private void btn_settings_Click(object sender, EventArgs e)
         {
-            var settingsForm = new frm_settings();
-            settingsForm.Show();
+            this.settingsForm = new frm_settings();
+            this.settingsFormResult = settingsForm.ShowDialog();
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (this.settingsFormResult == DialogResult.OK)
+            {
+                this.runner.AttackMode = settingsForm.AttackMode;
+                this.runner.Device = settingsForm.UsedDevice;
+                MessageBox.Show(this.runner.ToString());
+            }
         }
     }
 }

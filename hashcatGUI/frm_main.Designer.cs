@@ -38,6 +38,7 @@ namespace hashcatGUI
             this.lbl_hash = new System.Windows.Forms.Label();
             this.lbl_exe = new System.Windows.Forms.Label();
             this.pn_top = new System.Windows.Forms.Panel();
+            this.btn_settings = new System.Windows.Forms.Button();
             this.pic_github = new System.Windows.Forms.PictureBox();
             this.btn_minimize = new System.Windows.Forms.Button();
             this.lbl_github = new System.Windows.Forms.LinkLabel();
@@ -46,7 +47,7 @@ namespace hashcatGUI
             this.lbl_output = new System.Windows.Forms.Label();
             this.btn_output_new = new System.Windows.Forms.Button();
             this.lbl_msg = new System.Windows.Forms.Label();
-            this.btn_settings = new System.Windows.Forms.Button();
+            this.pr_pw_lenght = new System.Windows.Forms.ProgressBar();
             this.pn_top.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_github)).BeginInit();
             this.pn_output.SuspendLayout();
@@ -138,6 +139,18 @@ namespace hashcatGUI
             this.pn_top.Size = new System.Drawing.Size(1260, 46);
             this.pn_top.TabIndex = 10;
             // 
+            // btn_settings
+            // 
+            this.btn_settings.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_settings.Font = new System.Drawing.Font("Source Code Pro", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_settings.Location = new System.Drawing.Point(12, 5);
+            this.btn_settings.Name = "btn_settings";
+            this.btn_settings.Size = new System.Drawing.Size(103, 36);
+            this.btn_settings.TabIndex = 14;
+            this.btn_settings.Text = "Settings";
+            this.btn_settings.UseVisualStyleBackColor = true;
+            this.btn_settings.Click += new System.EventHandler(this.btn_settings_Click);
+            // 
             // pic_github
             // 
             this.pic_github.BackColor = System.Drawing.SystemColors.Window;
@@ -226,23 +239,19 @@ namespace hashcatGUI
             this.lbl_msg.Size = new System.Drawing.Size(0, 31);
             this.lbl_msg.TabIndex = 13;
             // 
-            // btn_settings
+            // pr_pw_lenght
             // 
-            this.btn_settings.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_settings.Font = new System.Drawing.Font("Source Code Pro", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_settings.Location = new System.Drawing.Point(12, 5);
-            this.btn_settings.Name = "btn_settings";
-            this.btn_settings.Size = new System.Drawing.Size(103, 36);
-            this.btn_settings.TabIndex = 14;
-            this.btn_settings.Text = "Settings";
-            this.btn_settings.UseVisualStyleBackColor = true;
-            this.btn_settings.Click += new System.EventHandler(this.btn_settings_Click);
+            this.pr_pw_lenght.Location = new System.Drawing.Point(215, 189);
+            this.pr_pw_lenght.Name = "pr_pw_lenght";
+            this.pr_pw_lenght.Size = new System.Drawing.Size(433, 23);
+            this.pr_pw_lenght.TabIndex = 14;
             // 
             // frm_main
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1260, 545);
+            this.Controls.Add(this.pr_pw_lenght);
             this.Controls.Add(this.lbl_msg);
             this.Controls.Add(this.btn_output_new);
             this.Controls.Add(this.pn_output);
@@ -286,6 +295,7 @@ namespace hashcatGUI
         private System.Windows.Forms.LinkLabel lbl_github;
         private System.Windows.Forms.PictureBox pic_github;
         private System.Windows.Forms.Button btn_settings;
+        private System.Windows.Forms.ProgressBar pr_pw_lenght;
     }
 }
 
