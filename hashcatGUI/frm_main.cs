@@ -184,19 +184,23 @@ namespace hashcatGUI
             {
                 pr_pw_lenght.Value = 0;
             }
-            else if (password.Length < 2)
+            else if (password.Length <= 2)
             {
                 pr_pw_lenght.Value = 10;
             }
-            else if (password.Length < 4)
+            else if (password.Length <= 4)
             {
-                pr_pw_lenght.Value = 50;
+                pr_pw_lenght.Value = 20;
             }
-            else if (password.Length < 8)
+            else if (password.Length <= 6)
             {
-                pr_pw_lenght.Value = 80;
+                pr_pw_lenght.Value = 40;
             }
-            else if (password.Length < 10)
+            else if (password.Length <= 8)
+            {
+                pr_pw_lenght.Value = 60;
+            }
+            else if (password.Length <= 10)
             {
                 pr_pw_lenght.Value = 100;
             }
