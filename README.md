@@ -7,11 +7,11 @@
 ## Benutzung:
 1. Pfad der Hashcat exe eintragen
 
-[GUI](https://github.com/LinuxTux23/hashcatGUI/img/gui.PNG | width=50)
+<img src="https://raw.githubusercontent.com/LinuxTux23/hashcatGUI/master/img/gui.PNG">
 
 2. (Optional) Attack Mode und Device unter "Settings" auswählen
 
-[Settings](https://github.com/LinuxTux23/hashcatGUI/img/settings.PNG width=50)
+<img src="https://raw.githubusercontent.com/LinuxTux23/hashcatGUI/master/img/settings.PNG">
 
 3. Passwort eingeben (Komplexität des Passworts nicht übertreiben)
 
