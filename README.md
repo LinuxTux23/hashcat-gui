@@ -19,4 +19,6 @@
 
 5. Warten bis sich Konsolenfenster schließt und die Ausgabe im Outputfeld auf er rechten Seite erscheint
 
+<img src="https://raw.githubusercontent.com/LinuxTux23/hashcatGUI/master/img/cracked.PNG">
 
+<img src="https://raw.githubusercontent.com/LinuxTux23/hashcatGUI/master/img/cracked-1.PNG">
