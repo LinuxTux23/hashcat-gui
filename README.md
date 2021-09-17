@@ -1,8 +1,8 @@
 # Hashcat GUI
 
 ## Installation:
-* Download der Hashcat GUI Exe Datei unter "Releases"
-* Download der Hashcat Exe (wird vom Hashcat GUI benötigt)
+* [https://github.com/LinuxTux23/hashcatGUI/releases/download/main/hashcatGUI.exe](Download der Hashcat GUI Exe Datei unter "Releases")
+* [https://hashcat.net/files/hashcat-6.2.4.7z](Download der Hashcat Exe (wird vom Hashcat GUI benötigt))
 
 ## Benutzung:
 1. Pfad der Hashcat exe eintragen
