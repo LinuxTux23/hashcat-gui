@@ -96,6 +96,7 @@ namespace hashcatGUI
             this.tb_exe.Size = new System.Drawing.Size(433, 38);
             this.tb_exe.TabIndex = 6;
             this.tb_exe.Text = "C:\\Users\\lohseben\\Downloads\\hashcat-6.2.4";
+            this.tb_exe.TextChanged += new System.EventHandler(this.tb_exe_TextChanged);
             // 
             // lbl_password
             // 

@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
@@ -20,32 +15,31 @@ namespace hashcatGUI
         public string output;
         private string hash;
         private string crackedHash;
-        private string test;
-        private HashCatRunner runner;
         private frm_settings settingsForm;
         private System.Windows.Forms.DialogResult settingsFormResult;
+        public byte attackMode = 1;
+        public byte usedDevice = 1;
 
         public string CreateMD5(string input)
         {
             // Use input string to calculate MD5 hash
             var md5 = System.Security.Cryptography.MD5.Create();
-                byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
-                byte[] hashBytes = md5.ComputeHash(inputBytes);
+            byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
+            byte[] hashBytes = md5.ComputeHash(inputBytes);
 
-                // Convert the byte array to hexadecimal string
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < hashBytes.Length; i++)
-                {
-                    sb.Append(hashBytes[i].ToString("X2"));
-                }
-                this.hash = sb.ToString();
-                return sb.ToString();
+            // Convert the byte array to hexadecimal string
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < hashBytes.Length; i++)
+            {
+                sb.Append(hashBytes[i].ToString("X2"));
+            }
+            this.hash = sb.ToString();
+            return sb.ToString();
         }
 
         public frm_main()
         {
             InitializeComponent();
-            runner = new HashCatRunner();
             this.CenterToScreen();
             this.BackColor = Color.FromArgb(51, 51, 51);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -126,37 +120,76 @@ namespace hashcatGUI
                 var errorForm = new frm_error("Please insert a Password!");
                 errorForm.Show();
             }
+            else if(tb_exe.Text == string.Empty)
+            {
+                var errorForm = new frm_error("Please specify the hashcat.exe\nfile location!");
+                errorForm.Show();
+            }
             else
             {
+                // Erstellung eines neuen Prozesses
                 Process p = new Process();
                 ProcessStartInfo psi = new ProcessStartInfo();
                 psi.FileName = "cmd.exe";
                 psi.WorkingDirectory = tb_exe.Text;
-                //MessageBox.Show(psi.FileName);
-                psi.Arguments = "/c hashcat.exe " + tb_hash.Text + " example.dict -m 0 --attack-mode 0 --potfile-disable -d 1 example.dict";
                 psi.RedirectStandardError = true;
                 psi.RedirectStandardOutput = true;
                 psi.UseShellExecute = false;
                 p.StartInfo = psi;
+                psi.Arguments = "/c hashcat.exe " + tb_hash.Text + " --potfile-disable";
 
-                p.Start();
-                string error = p.StandardError.ReadToEnd();
-                string output = p.StandardOutput.ReadToEnd();
-                this.output = output;
-                lbl_output.Text = output;
-
-
-                p.WaitForExit();
-
-                foreach (string line in new LineReader(() => new StringReader(this.output)))
+                // Abfrage des Attack Mode
+                // Attackmode 0 Wörterbuch
+                if (this.attackMode == 1)
                 {
-                    if (line.StartsWith(tb_hash.Text))
+                    psi.Arguments = psi.Arguments + " example.dict -m 0";
+                }
+                // Attack Mode 3 Bruteforce
+                else
+                {
+
+                }
+
+                // Abfrage des Benutzten Gerätes zum Rechnen
+                // Device CPU
+                if(this.usedDevice == 1)
+                {
+                    psi.Arguments = psi.Arguments + " -d 1";
+                }
+                // Device GPU
+                else
+                {
+                    psi.Arguments = psi.Arguments + " -d 2";
+                }
+                
+
+
+                try
+                {
+                    p.Start();
+                    string error = p.StandardError.ReadToEnd();
+                    string output = p.StandardOutput.ReadToEnd();
+                    this.output = output;
+                    lbl_output.Text = output;
+                    p.WaitForExit();
+
+                    foreach (string line in new LineReader(() => new StringReader(this.output)))
                     {
-                        this.crackedHash = line;
+                        if (line.StartsWith(tb_hash.Text))
+                        {
+                            this.crackedHash = line;
+                        }
                     }
+                }
+                catch
+                {
+                    var errorForm = new frm_error("Something went wrong\n- Incorrect Path to Executable\n- Unexpected Error");
+                    errorForm.Show();
                 }
 
                 lbl_msg.Text = this.crackedHash;
+
+                MessageBox.Show(psi.Arguments.ToString());
             }
         }
 
@@ -178,6 +211,15 @@ namespace hashcatGUI
 
         private void tb_password_TextChanged(object sender, EventArgs e)
         {
+            if (tb_password.Text == string.Empty)
+            {
+                tb_password.BackColor = Color.FromArgb(157, 2, 8);
+            }
+            else
+            {
+                tb_password.BackColor = Color.FromArgb(0, 0, 0);
+            }
+
             tb_hash.Text = this.CreateMD5(tb_password.Text).ToLower();
             var password = tb_password.Text;
             if(password.Length <= 0)
@@ -226,15 +268,30 @@ namespace hashcatGUI
         {
             this.settingsForm = new frm_settings();
             this.settingsFormResult = settingsForm.ShowDialog();
+            if(settingsForm.DialogResult == DialogResult.OK)
+            {
+                MessageBox.Show(settingsForm.AttackMode.ToString());
+            }
+           
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
             if (this.settingsFormResult == DialogResult.OK)
             {
-                this.runner.AttackMode = settingsForm.AttackMode;
-                this.runner.Device = settingsForm.UsedDevice;
-                MessageBox.Show(this.runner.ToString());
+                MessageBox.Show("Test");
+            }
+        }
+
+        private void tb_exe_TextChanged(object sender, EventArgs e)
+        {
+            if(tb_exe.Text == string.Empty)
+            {
+                tb_exe.BackColor = Color.FromArgb(157, 2, 8);
+            }
+            else
+            {
+                tb_exe.BackColor = Color.FromArgb(0, 0, 0);
             }
         }
     }
