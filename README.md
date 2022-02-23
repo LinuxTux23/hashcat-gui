@@ -1,5 +1,7 @@
 # Hashcat GUI
 
+> ## Continued at my own git server at [https://git.benedikt.tech/bl/hashcat-gui](https://git.benedikt.tech/bl/hashcat-gui)
+
 ## Installation:
 * [Download der Hashcat GUI Exe Datei unter "Releases"](https://github.com/LinuxTux23/hashcatGUI/releases/download/main/hashcatGUI.exe)
 * [Download der Hashcat Exe (wird vom Hashcat GUI benötigt)](https://hashcat.net/files/hashcat-6.2.4.7z)
