@@ -1,25 +1,25 @@
 # Hashcat GUI
 
-> ## Continued at my own git server at [https://git.benedikt.tech/bl/hashcat-gui](https://git.benedikt.tech/bl/hashcat-gui)
+> ## This project is currently unmaintained and discontinued
 
 ## Installation:
-* [Download der Hashcat GUI Exe Datei unter "Releases"](https://github.com/LinuxTux23/hashcatGUI/releases/download/main/hashcatGUI.exe)
-* [Download der Hashcat Exe (wird vom Hashcat GUI benötigt)](https://hashcat.net/files/hashcat-6.2.4.7z)
+* [Download the latest version of the hashcat-gui](https://github.com/LinuxTux23/hashcatGUI/releases/download/main/hashcatGUI.exe)
+* [Download of the hashcat binary](https://hashcat.net)
 
-## Benutzung:
-1. Pfad der Hashcat exe eintragen
+## Usage:
+1. Insert the path of the downloaded binary
 
 <img src="https://raw.githubusercontent.com/LinuxTux23/hashcatGUI/master/img/gui.PNG">
 
-2. (Optional) Attack Mode und Device unter "Settings" auswählen
+2. (Optional) Choose "Attack Mode" in Settings
 
 <img src="https://raw.githubusercontent.com/LinuxTux23/hashcatGUI/master/img/settings.PNG">
 
-3. Passwort eingeben (Komplexität des Passworts nicht übertreiben)
+3. Insert the password to be hashed
 
-4. Hashcat mit einem Klick auf "Crack Hash" starten
+4. Start the process by clicking the "Crack Hash" button
 
-5. Warten bis sich Konsolenfenster schließt und die Ausgabe im Outputfeld auf er rechten Seite erscheint
+5. Be patient and wait until the output modal closes and the result gets displayed
 
 <img src="https://raw.githubusercontent.com/LinuxTux23/hashcatGUI/master/img/cracked.PNG">
 
